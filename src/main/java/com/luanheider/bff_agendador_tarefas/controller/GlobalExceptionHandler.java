@@ -1,6 +1,7 @@
 package com.luanheider.bff_agendador_tarefas.controller;
 
 import com.luanheider.bff_agendador_tarefas.infrastructure.exceptions.ConflictException;
+import com.luanheider.bff_agendador_tarefas.infrastructure.exceptions.IllegalArgumentException;
 import com.luanheider.bff_agendador_tarefas.infrastructure.exceptions.ResourceNotFoundException;
 import com.luanheider.bff_agendador_tarefas.infrastructure.exceptions.UnauthorizedException;
 import org.springframework.http.HttpStatus;
@@ -24,5 +25,10 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(UnauthorizedException.class)
     public ResponseEntity<String> handleUnauthorizedException(UnauthorizedException ex) {
         return new ResponseEntity<>(ex.getMessage(), HttpStatus.UNAUTHORIZED);
+    }
+
+    @ExceptionHandler(IllegalArgumentException.class)
+    public ResponseEntity<String> handlerIllegalArgumentException(IllegalArgumentException ex) {
+        return new ResponseEntity<>(ex.getMessage(), HttpStatus.BAD_REQUEST);
     }
 }
