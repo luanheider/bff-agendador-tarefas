@@ -2,6 +2,7 @@ package com.luanheider.bff_agendador_tarefas.infrastructure.client.config;
 
 import com.luanheider.bff_agendador_tarefas.infrastructure.exceptions.BusinessException;
 import com.luanheider.bff_agendador_tarefas.infrastructure.exceptions.ConflictException;
+import com.luanheider.bff_agendador_tarefas.infrastructure.exceptions.IllegalArgumentException;
 import com.luanheider.bff_agendador_tarefas.infrastructure.exceptions.ResourceNotFoundException;
 import com.luanheider.bff_agendador_tarefas.infrastructure.exceptions.UnauthorizedException;
 import feign.Response;
@@ -14,6 +15,7 @@ public class FeignError implements ErrorDecoder {
             case 409 -> new ConflictException("Erro atributo já existente");
             case 403 -> new ResourceNotFoundException("Erro atributo não encontrado");
             case 401 -> new UnauthorizedException("Erro usuário não autorizado");
+            case 400 -> new IllegalArgumentException("Erro ao buscar cep");
             default -> new BusinessException("Erro de servidor");
         };
     }

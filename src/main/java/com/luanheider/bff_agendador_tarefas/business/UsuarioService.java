@@ -7,6 +7,7 @@ import com.luanheider.bff_agendador_tarefas.business.dto.in.UsuarioDTORequest;
 import com.luanheider.bff_agendador_tarefas.business.dto.out.EnderecoDTOResponse;
 import com.luanheider.bff_agendador_tarefas.business.dto.out.TelefoneDTOResponse;
 import com.luanheider.bff_agendador_tarefas.business.dto.out.UsuarioDTOResponse;
+import com.luanheider.bff_agendador_tarefas.business.dto.out.ViaCepDTOResponse;
 import com.luanheider.bff_agendador_tarefas.infrastructure.client.UsuarioClient;
 
 import lombok.RequiredArgsConstructor;
@@ -51,5 +52,9 @@ public class UsuarioService {
 
     public TelefoneDTOResponse cadastraTelefone(String token, TelefoneDTORequest telefoneDTO) {
         return usuarioClient.cadastraTelefone(telefoneDTO, token);
+    }
+
+    public ViaCepDTOResponse buscarEnderecoPorCep(String cep) {
+        return usuarioClient.buscarEnderecoPorCep(cep);
     }
 }
